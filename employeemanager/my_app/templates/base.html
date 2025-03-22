@@ -7,18 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" type="image/png" href="" />
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <title>Employee Manager</title>
+    <title>manager</title>
     {% block head %} 
     {% endblock %}
   </head>
   <body>
     <header>
-      <h1> Employee Manager</h1>
-      <nav>
+      <h1>Manager</h1>
+      {% comment %} <nav>
         <ul>
-            {% comment %} <>li><a href="{% url 'home' %}">Home</a></li> {% endcomment %}
+          <li><a href="{% url 'employee-index' %}">All employees</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'employee-create' %}">Add a Employee</a></li>
         </ul>
-      </nav>
+      </nav> {% endcomment %}
     </header>
     <main class="container">
      {% block content %} 

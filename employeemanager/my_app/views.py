@@ -9,19 +9,11 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
-class Employee:
-    def __init__(self, name, description, age):
-        self.name = name
-        self.description = description
-        self.age = age
-
-employees = [
-    Employee('Lolo',  'Kinda rude.', 3),
-    Employee('Sachi', 'Looks like a turtle.', 0),
-    Employee('Fancy', 'Happy fluff ball.', 4),
-    Employee('Bonk', 'Meows loudly.', 6)
-]
 
 def employee_index(request):
-    # Render the employee index template with the list of employees
+    employees=Employee,objects.all()
     return render(request, 'employees/index.html', {'employees': employees})
+
+def employee_detail(request, employee_id):
+    employee=Employee.objects.get(id=employee_id)
+    return render(request, 'employees/detail.html', {'employee': employee})

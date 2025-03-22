@@ -1,24 +1,28 @@
-{% extends 'base.html' %}
-{% load static %}
-
+{% extends 'base.html' %} 
+{% load static %} 
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/employees/employee-index.css' %}"/>
-{% endblock %}
-
+{% endblock %} 
 {% block content %}
-
-
-<section class="card-container">
+<h1>All Employees</h1>
+<hr />
+<div class="employee-list">
+ <section class="card-container">
   {% for employee in employees %}
     <div class="card">
-      <div class="card-content">
-
-        <h2 class="card-title">{{ employee.name }}</h2>
-        <p>{{ employee.age }} years old</p>
-        <p><small>{{ employee.description }}</small></p>
-      </div>
+      <a href="/employees/{{ employee.id }}">
+        <div class="card-content">
+          <h2 class="card-title">{{ employee.name }}</h2>
+          {% if employee.age > 0 %}
+          <p>A {{ employee.age }} year old employee</p>
+          {% else %}
+          <p>A young employee</p>
+          {% endif %}
+          <p><small>{{ employee.description }}</small></p>
+        </div>
+      </a>
     </div>
   {% endfor %}
 </section>
-
+</div>
 {% endblock %}

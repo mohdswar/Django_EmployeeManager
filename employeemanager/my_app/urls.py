@@ -8,5 +8,6 @@ urlpatterns = [
     path('employees/', views.employee_index, name='employee-index'),
     path('employees/<int:employee_id>/', views.employee_detail, name='employee-detail'),
     path('employees/create/', views.EmployeeCreate.as_view(), name='employee-create'),
-
+    path('employees/<int:pk>/update/', views.EmployeeUpdate.as_view(), name='employee-update'),
+    path('employees/<int:pk>/delete/', views.EmployeeDelete.as_view(), name='employee-delete'),
 ]

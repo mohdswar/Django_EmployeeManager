@@ -1,8 +1,8 @@
-{% extends 'base.html' %} 
-{% load static %} 
+{% extends 'base.html' %}
+{% load static %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/employees/employee-detail.css' %}" />
-{% endblock %} 
+{% endblock %}
 {% block content %}
 <section class="employee-container">
 
@@ -12,6 +12,11 @@
       <h2>A {{ employee.age }} year old </h2>
     {% endif %}
     <p>{{ employee.description }}</p>
+    
+    <div class="employee-actions">
+      <a href="{% url 'employee-update' employee.id %}" class="btn warn">Edit</a>
+      <a href="{% url 'employee-delete' employee.id %}" class="btn danger">Delete</a>
+    </div>
   </div>
 </section>
 {% endblock %}

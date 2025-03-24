@@ -10,4 +10,5 @@ urlpatterns = [
     path('employees/create/', views.EmployeeCreate.as_view(), name='employee-create'),
     path('employees/<int:pk>/update/', views.EmployeeUpdate.as_view(), name='employee-update'),
     path('employees/<int:pk>/delete/', views.EmployeeDelete.as_view(), name='employee-delete'),
+    path('employees/<int:employee_id>/add-task/', views.add_task, name='add-task'),
 ]

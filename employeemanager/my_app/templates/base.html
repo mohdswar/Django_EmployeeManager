@@ -5,26 +5,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" type="image/png" href="" />
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <title>manager</title>
-    {% block head %} 
-    {% endblock %}
+    <title>Manager</title>
+    {% block head %} {% endblock %}
   </head>
   <body>
     <header>
       <h1>Manager</h1>
       <nav>
         <ul>
-          <li><a href="{% url 'employee-index' %}">All Cats</a></li>
+          <li><a href="{% url 'employee-index' %}">All Employees</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
-          <li><a href="{% url 'employee-create' %}">Add a Employee</a></li>
+          <li><a href="{% url 'employee-create' %}" class="btn">Add Employee</a></li>
         </ul>
       </nav>
     </header>
     <main class="container">
-     {% block content %} 
-     {% endblock %}
-     </main>
+      {% block content %} {% endblock %}
+    </main>
   </body>
 </html>

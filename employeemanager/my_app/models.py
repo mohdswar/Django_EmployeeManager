@@ -33,3 +33,11 @@ class Task(models.Model):
         return f"{self.task} on {self.date} with priority {self.get_priority_display()}"
     class Meta:
         ordering = ['-date']
+
+class Role(models.Model):
+    name = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.name
+    def get_absolute_url(self):
+        return reverse('role-detail', kwargs={'pk': self.id})

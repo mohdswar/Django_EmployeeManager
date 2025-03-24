@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import Employee
+from .models import Employee, Role
 from .forms import TaskForm
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -46,3 +46,7 @@ def add_task(request, employee_id):
         new_task.employee_id = employee_id
         new_task.save()
         return redirect('employee-detail', employee_id=employee_id)
+
+class RoleCreate(CreateView):
+    model = Role
+    fields= '__all__'

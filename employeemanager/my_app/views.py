@@ -52,12 +52,17 @@ def add_task(request, employee_id):
 class RoleCreate(CreateView):
     model = Role
     fields= '__all__'
-    template_name = 'my_app/role_form.html'
 
 class RoleList(ListView):
     model = Role
-    template_name = 'my_app/role_list.html'
-    context_object_name = 'role_list'
 
 class RoleDetail(DetailView):
     model = Role
+
+class RoleUpdate(UpdateView):
+    model = Role
+    fields = ['name']
+    
+class RoleDelete(DeleteView):
+    model = Role
+    success_url = '/roles/'

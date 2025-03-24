@@ -7,14 +7,24 @@ PRIORITYS = (
     ('C', 'urgent'),
 )
 
+class Role(models.Model):
+    name = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('role-detail', kwargs={'pk': self.id})
 
 class Employee(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
     age = models.IntegerField()
+    roles = models.ManyToManyField(Role, related_name='employees')
     
     def __str__(self):
         return self.name
+    
     def get_absolute_url(self):
         return reverse('employee-detail', kwargs={'employee_id': self.id})
 
@@ -29,15 +39,7 @@ class Task(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     
     def __str__(self):
-        # Nice method for obtaining the friendly value of a Field.choice
         return f"{self.task} on {self.date} with priority {self.get_priority_display()}"
+    
     class Meta:
         ordering = ['-date']
-
-class Role(models.Model):
-    name = models.CharField(max_length=100)
-    
-    def __str__(self):
-        return self.name
-    def get_absolute_url(self):
-        return reverse('role-detail', kwargs={'pk': self.id})

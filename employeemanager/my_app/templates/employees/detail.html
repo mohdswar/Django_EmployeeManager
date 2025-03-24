@@ -2,7 +2,6 @@
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/employees/employee-details.css' %}" />
-
 {% endblock %}
 {% block content %}
 
@@ -54,6 +53,45 @@
       </form>
     </section>
   </div>
+
+  <section class="roles">
+    <div class="subsection-title">
+      <h2>Roles</h2>
+    </div>
+    <h3>{{ employee.name }}'s Roles</h3>
+    <div class="subsection-content">
+      {% if employee.roles.count %}
+        {% for role in employee.roles.all %}
+          <div class="role-container">
+            <p>{{ role.name }}</p>
+            <form action="{% url 'remove-role' employee.id role.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn submit">Remove Role</button>
+            </form>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="no-roles">{{ employee.name }} doesn't have any roles!</p>
+      {% endif %}
+    </div>
+
+    <h3>Available Roles</h3>
+    <div class="subsection-content">
+      {% if available_roles.count %}
+        {% for role in available_roles %}
+          <div class="role-container">
+            <p>{{ role.name }}</p>
+            <form action="{% url 'associate-role' employee.id role.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn submit">Give Role</button>
+            </form>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="no-roles">No available roles!</p>
+      {% endif %}
+    </div>
+  </section>
 </div>
 
 {% endblock %}

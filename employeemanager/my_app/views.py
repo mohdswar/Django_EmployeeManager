@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
 from .models import Employee, Role
 from .forms import TaskForm
@@ -17,12 +17,19 @@ def employee_index(request):
     employees = Employee.objects.all()
     return render(request, 'employees/index.html', {'employees': employees})
 
+
 def employee_detail(request, employee_id):
-    employee = Employee.objects.get(id=employee_id)
+    employee = get_object_or_404(Employee, pk=employee_id)
     task_form = TaskForm()
+    
+    # Only get the roles the employee does not have
+    available_roles = Role.objects.exclude(id__in=employee.roles.all().values_list('id'))
+    
     return render(request, 'employees/detail.html', { 
         'employee': employee,
-        'task_form': task_form })
+        'task_form': task_form,
+        'available_roles': available_roles
+    })
 
 
 class EmployeeCreate(CreateView):
@@ -39,11 +46,8 @@ class EmployeeDelete(DeleteView):
     success_url = '/employees/'
 
 def add_task(request, employee_id):
-    # Create a ModelForm instance using the data in request.POST
     form = TaskForm(request.POST)
-    # Validate the form
     if form.is_valid():
-        # Save the form to the database
         new_task = form.save(commit=False)
         new_task.employee_id = employee_id
         new_task.save()
@@ -66,3 +70,15 @@ class RoleUpdate(UpdateView):
 class RoleDelete(DeleteView):
     model = Role
     success_url = '/roles/'
+
+def associate_role(request, employee_id, role_id):
+    employee = get_object_or_404(Employee, pk=employee_id)
+    role = get_object_or_404(Role, pk=role_id)
+    employee.roles.add(role)
+    return redirect('employee-detail', employee_id=employee.id)
+
+def remove_role(request, employee_id, role_id):
+    employee = get_object_or_404(Employee, pk=employee_id)
+    role = get_object_or_404(Role, pk=role_id)
+    employee.roles.remove(role)
+    return redirect('employee-detail', employee_id=employee.id)

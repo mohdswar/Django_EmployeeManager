@@ -13,4 +13,5 @@ class TaskForm(forms.ModelForm):
                     'type': 'date'
                 }
             ),
+            
         }

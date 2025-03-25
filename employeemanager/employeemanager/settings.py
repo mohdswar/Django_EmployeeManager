@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -137,6 +138,7 @@ LOGIN_URL = 'home'
 LOGIN_REDIRECT_URL = 'employee-index'
 LOGOUT_REDIRECT_URL = 'home'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Add this line
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 

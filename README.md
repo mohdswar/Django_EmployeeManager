@@ -7,7 +7,7 @@
 ## Getting Started
 
 - **Deployed App**: [](#)
-- **Planning Materials**: [](#)
+- **Planning Materials**: [https://trello.com/b/2Sc9VHjG/project-4-employees](#)
 
 ## Attributions
 - [Django Framework](https://www.djangoproject.com/)
@@ -15,6 +15,12 @@
 - [Font Awesome](https://fontawesome.com/) for icons
 
 ## Screenshot
+![Main](https://github.com/user-attachments/assets/2e8efb59-a9ae-436b-9966-03e36f66633d)
+
+![add employee](https://github.com/user-attachments/assets/fa2b28b8-431b-4163-b4b6-6a90c550cf1e)
+
+![employee show](https://github.com/user-attachments/assets/cf5b6828-9d8b-4c00-a72a-cfcdce8092ce)
+
 
 
 ## Technologies Used

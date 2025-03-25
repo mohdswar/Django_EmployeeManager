@@ -12,6 +12,12 @@
       <p><strong>Age:</strong> {{ employee.age }}</p>
       <p>{{ employee.description }}</p>
     </div>
+ 
+    <div class="employee-actions">
+      <a href="{% url 'employee-update' employee.id %}" class='btn warn'>Edit</a>
+      <a href="{% url 'employee-delete' employee.id %}" class='btn danger'>Delete</a>
+    </div>
+    </div>
   </div>
 
   <div class="tasks-container">

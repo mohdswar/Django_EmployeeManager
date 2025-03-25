@@ -17,4 +17,5 @@ urlpatterns = [
     path('roles/', views.RoleList.as_view(), name='role-index'),
     path('roles/<int:pk>/update/', views.RoleUpdate.as_view(), name='role-update'),
     path('roles/<int:pk>/delete/', views.RoleDelete.as_view(), name='role-delete'),
+    path('accounts/signup/', views.signup, name='signup'),
 ]

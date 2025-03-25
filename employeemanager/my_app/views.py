@@ -4,11 +4,10 @@ from .models import Employee, Role
 from .forms import TaskForm
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import ListView, DetailView # add these 
-
-def home(request):
-    
-    return render(request, 'home.html')
+from django.views.generic import ListView, DetailView
+from django.contrib.auth.views import LoginView
+class Home(LoginView):
+    template_name = 'home.html'
 
 def about(request):
     return render(request, 'about.html')
@@ -22,7 +21,6 @@ def employee_detail(request, employee_id):
     employee = get_object_or_404(Employee, pk=employee_id)
     task_form = TaskForm()
     
-    # Only get the roles the employee does not have
     available_roles = Role.objects.exclude(id__in=employee.roles.all().values_list('id'))
     
     return render(request, 'employees/detail.html', { 
@@ -82,3 +80,4 @@ def remove_role(request, employee_id, role_id):
     role = get_object_or_404(Role, pk=role_id)
     employee.roles.remove(role)
     return redirect('employee-detail', employee_id=employee.id)
+

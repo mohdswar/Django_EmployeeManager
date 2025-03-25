@@ -18,11 +18,17 @@
       <h1>Manager</h1>
       <nav>
         <ul>
+          {% if user.is_authenticated %}
           <li><a href="{% url 'employee-index' %}">All employees</a></li>
           <li><a href="{% url 'role-index' %}">All Roles</a></li>
-          <li><a href="{% url 'about' %}">About</a></li>
           <li><a href="{% url 'employee-create' %}">Add an Employee</a></li>
           <li><a href="{% url 'role-create' %}">Add an Role</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          {% else %}
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'home' %}">Login</a></li>
+        {% endif %}
+
         </ul>
       </nav>
     </header>

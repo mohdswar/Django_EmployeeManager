@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+import dj_database_url
+load_dotenv()
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +26,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)@*my*yq!njim5yc@y#mxw*jz2lgj@^m-cn@y1w46@^w&*gox2'
+# SECRET_KEY = 'django-insecure-)@*my*yq!njim5yc@y#mxw*jz2lgj@^m-cn@y1w46@^w&*gox2'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -84,10 +91,7 @@ WSGI_APPLICATION = 'employeemanager.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-import dj_database_url
-DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
-}
+
 
 DATABASES = {
    'default': {
@@ -95,6 +99,26 @@ DATABASES = {
        'NAME': 'employeemanager',
    }
 }
+
+if 'ON_HEROKU' in os.environ:
+    DEBUG = True
+    DATABASES = {
+        "default": dj_database_url.config(
+            env='DATABASE_URL',
+            conn_max_age=600,
+            conn_health_checks=True,
+            ssl_require=True,
+        ),
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'employeemanager',
+            # The value of 'NAME' should match the value of 'NAME' you replaced.
+        }
+    }
+
 
 
 
@@ -137,8 +161,9 @@ STATIC_URL = 'static/'
 LOGIN_URL = 'home'
 LOGIN_REDIRECT_URL = 'employee-index'
 LOGOUT_REDIRECT_URL = 'home'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Add this line
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 

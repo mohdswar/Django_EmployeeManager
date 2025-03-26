@@ -10,7 +10,7 @@
 - **Planning Materials**: [https://trello.com/b/2Sc9VHjG/project-4-employees](#)
 
 ## Attributions
-- [Django Framework](https://www.djangoproject.com/)
+- [Django Framework](https://employe-manager-997de00a158c.herokuapp.com/)
 - [Bootstrap](https://getbootstrap.com/) for UI components
 - [Font Awesome](https://fontawesome.com/) for icons
 

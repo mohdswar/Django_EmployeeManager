@@ -6,8 +6,11 @@
 
 ## Getting Started
 
-- **Deployed App**: [https://employe-manager-df49ced2044f.herokuapp.com/](#)
-- **Planning Materials**: [https://trello.com/b/2Sc9VHjG/project-4-employees](#)
+
+https://employe-manager-df49ced2044f.herokuapp.com/
+
+- [Deployed app](https://employe-manager-df49ced2044f.herokuapp.com/)
+- [Trello project manager](https://trello.com/b/2Sc9VHjG/project-4-employees)
 
 ## Attributions
 - [Django Framework](https://employe-manager-997de00a158c.herokuapp.com/)

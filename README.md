@@ -7,7 +7,6 @@
 ## Getting Started
 
 
-https://employe-manager-df49ced2044f.herokuapp.com/
 
 - [Deployed app](https://employees-manager-8a08a64dc431.herokuapp.com/)
 - [Trello project manager](https://trello.com/b/2Sc9VHjG/project-4-employees)
